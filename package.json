@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "jest-cli": "^22.0.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17"
@@ -10,7 +11,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "debug": "NODE_ENV=debug npm test"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "jest": "^22.0.4",
+    "puppeteer": "^0.13.0"
   }
 }
