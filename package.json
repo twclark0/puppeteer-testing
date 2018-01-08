@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jest-cli": "^22.0.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17"
@@ -17,6 +16,7 @@
   },
   "devDependencies": {
     "faker": "^4.1.0",
+    "jest-cli": "^22.0.4",
     "jest": "^22.0.4",
     "puppeteer": "^0.13.0"
   }
