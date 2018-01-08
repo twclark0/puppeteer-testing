@@ -6,28 +6,31 @@ const isDebugging = () => {
     slowMo: 250,
     devtools: true  
   }
-  return process.env.NODE_ENV === 'debug' ? debugging_mode : false;
-};
+  return process.env.NODE_ENV === 'debug' ? debugging_mode : {};
+}
 
-test('First test', async () => {
-  let browser = await puppeteer.launch(isDebugging())
-  let page = await browser.newPage()
 
-  page.emulate({
-    viewport: {
-      width: 500,
-      height: 2400
-    },
-     userAgent: ''
-  })
+describe('on page load ', () => {
+  test('h1 loads correctly', async () => {
+    let browser = await puppeteer.launch(isDebugging())
+    let page = await browser.newPage()
 
-   await page.goto('http://localhost:3000/')
-   await page.waitForSelector('.App-title')
+    page.emulate({
+      viewport: {
+        width: 500,
+        height: 2400
+      },
+      userAgent: ''
+    })
 
-   const html = await page.$eval('.App-title', e => e.innerHTML)
+    await page.goto('http://localhost:3001/')
+    await page.waitForSelector('.App-title')
 
-   expect(html).toBe('Welcome to React')
+    const html = await page.$eval('.App-title', e => e.innerHTML)
 
-   browser.close()
+    expect(html).toBe('Welcome to React')
 
-}, 16000)
+    browser.close()
+
+  }, 16000)
+})

@@ -21,6 +21,22 @@
 .App-intro {
   font-size: large;
 }
+ul {
+    display: flex;
+    justify-content: center;
+}
+ul li a {
+  color: lightgray;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+li {
+  list-style: none;
+  border-bottom: 1px solid;
+  margin: 0 15px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
