@@ -33,15 +33,6 @@ describe('on page load ', () => {
     expect(navbar).toBe(true)
     expect(listItems.length).toBe(4)
   })
-
-  test('nav loads correctly', async () => {
-
-    const navbar = await page.$eval('.navbar', el => el ? true : false)
-    const listItems = await page.$$('.nav-li')
-
-    expect(navbar).toBe(true)
-    expect(listItems.length).toBe(4)
-  })
 })
 
 afterAll(() => {
