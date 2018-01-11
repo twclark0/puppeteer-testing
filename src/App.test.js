@@ -22,15 +22,5 @@ describe('on page load ', () => {
       },
       userAgent: ''
     })
-
-    await page.goto('http://localhost:3001/')
-    await page.waitForSelector('.App-title')
-
-    const html = await page.$eval('.App-title', e => e.innerHTML)
-
-    expect(html).toBe('Welcome to React')
-
-    browser.close()
-
-  }, 16000)
+  })
 })
