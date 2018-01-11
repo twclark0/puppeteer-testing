@@ -22,7 +22,7 @@ beforeAll(async () => {
 describe('on page load ', () => {
   test('h1 loads correctly', async () => {
 
-    const html = await page.$eval('.App-title', e => e.innerHTML)
+    const html = await page.$eval('[data-testid="h1"]', e => e.innerHTML)
 
     expect(html).toBe('Welcome to React')
 
@@ -30,8 +30,8 @@ describe('on page load ', () => {
 
   test('nav loads correctly', async () => {
 
-    const navbar = await page.$eval('.navbar', el => el ? true : false)
-    const listItems = await page.$$('.nav-li')
+    const navbar = await page.$eval('[data-testid="navbar"]', el => el ? true : false)
+    const listItems = await page.$$('[data-testid="navBarLi"]')
 
     expect(navbar).toBe(true)
     expect(listItems.length).toBe(4)
@@ -39,7 +39,7 @@ describe('on page load ', () => {
 
   test('images src loads correctly', async () => {
 
-    const logo = await page.$eval('.App-logo', el => el.src)
+    const logo = await page.$eval('[data-testid="logo"]', el => el.src)
 
     expect(logo).toBe('http://localhost:3000/static/media/logo.5d5d9eef.svg')
 

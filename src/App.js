@@ -7,14 +7,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-          <nav className='navbar'>
+          <img data-testid="logo" src={logo} className="App-logo" alt="logo" />
+          <h1 data-testid='h1' className="App-title">Welcome to React</h1>
+          <nav data-testid="navbar" className='navbar'>
             <ul>
-              <li className='nav-li'><a href="#">Home</a></li>
-              <li className='nav-li'><a href="#">About</a></li>
-              <li className='nav-li'><a href="#">Skills</a></li>
-              <li className='nav-li'><a href="#">Works</a></li>
+              <li data-testid="navBarLi" className='nav-li'><a href="#">Home</a></li>
+              <li data-testid="navBarLi" className='nav-li'><a href="#">About</a></li>
+              <li data-testid="navBarLi" className='nav-li'><a href="#">Skills</a></li>
+              <li data-testid="navBarLi" className='nav-li'><a href="#">Works</a></li>
             </ul>
           </nav>
         </header>
