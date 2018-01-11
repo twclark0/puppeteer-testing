@@ -9,12 +9,12 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <nav role="navigation">
+          <nav className='navbar'>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Skills</a></li>
-              <li><a href="#">Works</a></li>
+              <li className='nav-li'><a href="#">Home</a></li>
+              <li className='nav-li'><a href="#">About</a></li>
+              <li className='nav-li'><a href="#">Skills</a></li>
+              <li className='nav-li'><a href="#">Works</a></li>
             </ul>
           </nav>
         </header>
