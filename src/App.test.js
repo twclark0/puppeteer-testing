@@ -9,18 +9,36 @@ const isDebugging = () => {
   return process.env.NODE_ENV === 'debug' ? debugging_mode : {};
 }
 
+let browser
+let page
+beforeAll( async () => {
+  browser = await puppeteer.launch(isDebugging())
+  page = await browser.newPage()
+  await page.goto('http://localhost:3000/')
+  page.setViewport({ width: 500, height: 2400 })
+})
 
 describe('on page load ', () => {
   test('h1 loads correctly', async () => {
-    let browser = await puppeteer.launch(isDebugging())
-    let page = await browser.newPage()
 
-    page.emulate({
-      viewport: {
-        width: 500,
-        height: 2400
-      },
-      userAgent: ''
-    })
+    const html = await page.$eval('[data-testid="h1"]', e => e.innerHTML)
+
+    expect(html).toBe('Welcome to React')
+
+  }, 16000)
+
+  test('nav loads correctly', async () => {
+
+    const navbar = await page.$eval('[data-testid="navbar"]', el => el ? true : false)
+    const listItems = await page.$$('[data-testid="navBarLi"]')
+
+    expect(navbar).toBe(true)
+    expect(listItems.length).toBe(4)
   })
+})
+
+afterAll(() => {
+  if (isDebugging()) {
+    browser.close()
+  }
 })
