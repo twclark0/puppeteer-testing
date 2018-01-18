@@ -19,12 +19,12 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 data-testid='h1' className="App-title">Welcome to React</h1>
-          <nav data-testid="navbar" className='navbar' role="navigation">
+          <nav data-testid="navbar" className='navbar'>
             <ul>
-               <li data-testid="navBarLi" className='nav-li'><a href="#">Home</a></li>
-               <li data-testid="navBarLi" className='nav-li'><a href="#">About</a></li>
-               <li data-testid="navBarLi" className='nav-li'><a href="#">Skills</a></li>
-               <li data-testid="navBarLi" className='nav-li'><a href="#">Works</a></li>
+               <li data-testid="navBarLi" className='nav-li'><a href="http://localhost:3000/">Home</a></li>
+               <li data-testid="navBarLi" className='nav-li'><a href="http://localhost:3000/">About</a></li>
+               <li data-testid="navBarLi" className='nav-li'><a href="http://localhost:3000/">Skills</a></li>
+               <li data-testid="navBarLi" className='nav-li'><a href="http://localhost:3000/">Works</a></li>
             </ul>
           </nav>
         </header>
