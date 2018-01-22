@@ -21,9 +21,16 @@ const isDebugging = () => {
 
 let browser
 let page
+let logs = []
+let errors = []
 beforeAll(async () => {
   browser = await puppeteer.launch(isDebugging())
   page = await browser.newPage()
+  page.on('console', c => {
+    console.log(c.text)
+    logs.push(c.text)
+  })
+  page.on('pageerror', e => errors.push(e.text))
   await page.goto('http://localhost:3000/')
   await page.emulate(iPhone)
 })
@@ -76,6 +83,14 @@ describe('on page load ', () => {
 
       expect(firstNameCookie).not.toBeUndefined()
     })
+  })
+  test('does not have console logs', () => {
+    const newLogs = logs.filter( s => s !== '%cDownload the React DevTools for a better development experience: https://fb.me/react-devtools font-weight:bold')
+
+    expect(newLogs.length).toBe(0)
+  })
+  test('does not have exceptions', () => {
+    expect(errors.length).toBe(0)
   })
 })
 
