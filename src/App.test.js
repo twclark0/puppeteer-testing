@@ -13,7 +13,7 @@ const user = {
 const isDebugging = () => {
   let debugging_mode = {
     headless: false,
-    slowMo: 50,
+    slowMo: 25,
     devtools: true  
   }
   return process.env.NODE_ENV === 'debug' ? debugging_mode : {}
@@ -43,31 +43,40 @@ describe('on page load ', () => {
     expect(navbar).toBe(true)
     expect(listItems.length).toBe(4)
   })
+  describe('login form', () => {
+    test('fills out form and submits', async () => {
 
-  test('login form works correctly', async () => {
+      await page.setCookie({ name: 'JWT', value: 'kdkdkddf' })
 
-    const firstNameEl = await page.$('[data-testid="firstName"]')
-    const lastNameEl = await page.$('[data-testid="lastName"]')
-    const emaildEl = await page.$('[data-testid="email"]')
-    const passwordEl = await page.$('[data-testid="password"]')
-    const submitEl = await page.$('[data-testid="submit"]')
+      const firstNameEl = await page.$('[data-testid="firstName"]')
+      const lastNameEl = await page.$('[data-testid="lastName"]')
+      const emaildEl = await page.$('[data-testid="email"]')
+      const passwordEl = await page.$('[data-testid="password"]')
+      const submitEl = await page.$('[data-testid="submit"]')
 
-    await firstNameEl.tap()    
-    await page.type('[data-testid="firstName"]', user.firstName)
+      await firstNameEl.tap()    
+      await page.type('[data-testid="firstName"]', user.firstName)
 
-    await lastNameEl.tap()        
-    await page.type('[data-testid="lastName"]', user.lastName)
+      await lastNameEl.tap()        
+      await page.type('[data-testid="lastName"]', user.lastName)
 
-    await emaildEl.tap()            
-    await page.type('[data-testid="email"]', user.email)
+      await emaildEl.tap()            
+      await page.type('[data-testid="email"]', user.email)
 
-    await passwordEl.tap()
-    await page.type('[data-testid="password"]', user.password)
+      await passwordEl.tap()
+      await page.type('[data-testid="password"]', user.password)
 
-    await submitEl.tap()    
+      await submitEl.tap()    
 
-    await page.waitForSelector('[data-testid="success"]')
-  }, 16000)
+      await page.waitForSelector('[data-testid="success"]')
+    }, 16000)
+    test('sets firstName cookie', async () => {
+      const cookies = await page.cookies()
+      const firstNameCookie = cookies.find(c => c.name === 'firstName' && c.value === user.firstName)
+
+      expect(firstNameCookie).not.toBeUndefined()
+    })
+  })
 })
 
 afterAll(() => {
