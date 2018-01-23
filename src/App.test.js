@@ -35,13 +35,6 @@ beforeAll(async () => {
       interceptedRequest.continue()
     }
   })
-  // page.on('request', request => {
-  //   request.respond({
-  //     status: 404,
-  //     contentType: 'text/plain',
-  //     body: 'Not Found!'
-  //   })
-  // })
   page.on('console', c => logs.push(c.text))
   page.on('pageerror', e => errors.push(e.text))
   await page.goto('http://localhost:3000/')
@@ -111,7 +104,7 @@ describe('on page load ', () => {
   test('fetches starWars endpoint', async () => {
     const h3 = await page.$eval('[data-testid="starWars"]', e => e.innerHTML)
 
-    expect(h3).toBe('Hit StarWars endpoint')
+    expect(h3).toBe('Received StarWars data!')
     
   })
 })

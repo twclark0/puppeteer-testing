@@ -47,7 +47,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-          <h3 data-testid="starWars">{this.state.starWars.url ? 'Hit StarWars endpoint' : 'Something went wrong'}</h3>
+          <h3 data-testid="starWars">{this.state.starWars.url ? 'Received StarWars data!' : 'Something went wrong'}</h3>
         { this.state.complete ? 
           <SuccessMessage /> 
           :
