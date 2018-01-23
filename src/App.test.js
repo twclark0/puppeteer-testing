@@ -26,10 +26,23 @@ let errors = []
 beforeAll(async () => {
   browser = await puppeteer.launch(isDebugging())
   page = await browser.newPage()
-  page.on('console', c => {
-    console.log(c.text)
-    logs.push(c.text)
+  await page.setRequestInterception(true)
+  page.on('request', interceptedRequest => {
+    if (interceptedRequest.url.includes('swapi')) { 
+      interceptedRequest.abort()
+    }
+    else {
+      interceptedRequest.continue()
+    }
   })
+  // page.on('request', request => {
+  //   request.respond({
+  //     status: 404,
+  //     contentType: 'text/plain',
+  //     body: 'Not Found!'
+  //   })
+  // })
+  page.on('console', c => logs.push(c.text))
   page.on('pageerror', e => errors.push(e.text))
   await page.goto('http://localhost:3000/')
   await page.emulate(iPhone)
@@ -48,6 +61,9 @@ describe('on page load ', () => {
     const listItems = await page.$$('[data-testid="navBarLi"]')
 
     expect(navbar).toBe(true)
+    if (listItems.length !== 4) 
+      await page.screenshot({path: 'scrennshot.png'})
+
     expect(listItems.length).toBe(4)
   })
   describe('login form', () => {
@@ -91,6 +107,12 @@ describe('on page load ', () => {
   })
   test('does not have exceptions', () => {
     expect(errors.length).toBe(0)
+  })
+  test('fetches starWars endpoint', async () => {
+    const h3 = await page.$eval('[data-testid="starWars"]', e => e.innerHTML)
+
+    expect(h3).toBe('Hit StarWars endpoint')
+    
   })
 })
 
