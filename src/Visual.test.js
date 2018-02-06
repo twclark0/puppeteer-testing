@@ -12,7 +12,7 @@ beforeAll(async () => {
   await page.emulate(iPhone)
 })
 
-describe.only('screenshots are correct', () => {
+describe('screenshots are correct', () => {
   it('/index', async () => {
     const file = 'screenshot.png'
     await page.screenshot({ path: file })
