@@ -6,15 +6,15 @@ import './App.css';
 
 class App extends Component {
 
-  state = { 
+  state = {
     complete : false,
     firstName : '',
     starWars: {}
   }
 
   async componentDidMount() {
-    const data = await fetch('https://swapi.co/api/people/1/').then(res => res.json())
-    this.setState({starWars: data})
+    // const data = await fetch('https://swapi.co/api/people/1/').then(res => res.json())
+    // this.setState({starWars: data})
   }
 
   handleSubmit = e => {
@@ -48,8 +48,8 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <h3 data-testid="starWars">{this.state.starWars.url ? 'Received StarWars data!' : 'Something went wrong'}</h3>
-        { this.state.complete ? 
-          <SuccessMessage /> 
+        { this.state.complete ?
+          <SuccessMessage />
           :
           <Login submit={this.handleSubmit} input={this.handleInput} />
         }
