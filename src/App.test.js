@@ -14,7 +14,7 @@ const isDebugging = () => {
   let debugging_mode = {
     headless: false,
     slowMo: 25,
-    devtools: true  
+    devtools: true
   }
   return process.env.NODE_ENV === 'debug' ? debugging_mode : {}
 }
@@ -35,7 +35,6 @@ beforeAll(async () => {
     }
   })
   page.on('console', c => {
-    console.log(c.text)
     logs.push(c.text)
   })
   page.on('pageerror', e => errors.push(e.text))
@@ -71,19 +70,19 @@ describe('on page load ', () => {
       const passwordEl = await page.$('[data-testid="password"]')
       const submitEl = await page.$('[data-testid="submit"]')
 
-      await firstNameEl.tap()    
+      await firstNameEl.tap()
       await page.type('[data-testid="firstName"]', user.firstName)
 
-      await lastNameEl.tap()        
+      await lastNameEl.tap()
       await page.type('[data-testid="lastName"]', user.lastName)
 
-      await emaildEl.tap()            
+      await emaildEl.tap()
       await page.type('[data-testid="email"]', user.email)
 
       await passwordEl.tap()
       await page.type('[data-testid="password"]', user.password)
 
-      await submitEl.tap()    
+      await submitEl.tap()
 
       await page.waitForSelector('[data-testid="success"]')
     }, 16000)
